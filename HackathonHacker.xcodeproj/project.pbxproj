@@ -32,6 +32,7 @@
 		6F5959C219CD8E7800DB5763 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5959C119CD8E7800DB5763 /* SystemConfiguration.framework */; };
 		6F5959C419CD8EAD00DB5763 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5959C319CD8EAD00DB5763 /* Parse.framework */; };
 		6F5959CC19CD945100DB5763 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5959CB19CD945100DB5763 /* Bolts.framework */; };
+		6F5959CF19CDF33900DB5763 /* HackathonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5959CE19CDF33900DB5763 /* HackathonDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		6F5959C719CD93E900DB5763 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		6F5959C919CD93F300DB5763 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6F5959CB19CD945100DB5763 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		6F5959CD19CDF33900DB5763 /* HackathonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HackathonDetailViewController.h; sourceTree = "<group>"; };
+		6F5959CE19CDF33900DB5763 /* HackathonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackathonDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				6F59598F19CD6A2700DB5763 /* Images.xcassets */,
 				6F59598419CD6A2700DB5763 /* Supporting Files */,
 				6F5959AC19CD6B0100DB5763 /* MainStoryboard.storyboard */,
+				6F5959CD19CDF33900DB5763 /* HackathonDetailViewController.h */,
+				6F5959CE19CDF33900DB5763 /* HackathonDetailViewController.m */,
 				6F5959AE19CD6CFE00DB5763 /* HackathonTableViewController.h */,
 				6F5959AF19CD6CFE00DB5763 /* HackathonTableViewController.m */,
 			);
@@ -297,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F59598E19CD6A2700DB5763 /* AppDelegate.m in Sources */,
+				6F5959CF19CDF33900DB5763 /* HackathonDetailViewController.m in Sources */,
 				6F5959B019CD6CFE00DB5763 /* HackathonTableViewController.m in Sources */,
 				6F59598A19CD6A2700DB5763 /* main.m in Sources */,
 			);

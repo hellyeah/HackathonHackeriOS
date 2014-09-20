@@ -7,6 +7,7 @@
 //
 
 #import "HackathonTableViewController.h"
+#import "HackathonDetailViewController.h"
 
 @interface HackathonTableViewController ()
 
@@ -27,9 +28,7 @@
 {
     [super viewDidLoad];
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
+    self.hackathonsArray = [NSMutableArray new];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Hackathon"];
     //**should change to Hackathons at some point
@@ -37,12 +36,15 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %d hackathons.", objects.count);
+            //NSLog(@"Successfully retrieved %d hackathons.", objects.count);
             // Do something with the found objects
+            /*
             for (PFObject *object in objects) {
-                NSLog(@"%@", [object objectForKey:@"name"]);
+                NSLog(@"%@", object);
                 [self.hackathons addObject: object];
             }
+             */
+            [self addHackathons:objects];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -51,19 +53,31 @@
     
     //self.hackathons = ;
     NSLog(@"%@", self.hackathons);
+
     
-    self.hackathonsArray = [NSMutableArray new];
-    
-    self.hackathonsArray[0] = @[@"MHacks", @"PennApps", @"HackTheNorth", @"YHacks"];
-    self.hackathonsArray[1] = [NSArray arrayWithObjects:@"hackNY", @"HackGT", @"CalHacks", @"HackTX", @"BoilerMake", nil];
-    self.hackathonsArray[2] = [NSArray arrayWithObjects:@"hackNY", @"HackDuke", @"HackPrinceton", nil];
-    self.hackathonsArray[3] = [NSArray arrayWithObjects:@"HackMIT", @"HackTECH", @"LAHacks", nil];
+    //self.hackathonsArray[0] = @[@"MHacks", @"PennApps", @"HackTheNorth", @"YHacks"];
+    //self.hackathonsArray = [NSMutableArray arrayWithObjects:@"hackNY", @"HackGT", @"CalHacks", @"HackTX", @"BoilerMake", nil];
+    NSLog(@"%@", self.hackathonsArray);
+    NSLog(@"%d", [self.hackathonsArray count]);
+    //self.hackathonsArray[2] = [NSArray arrayWithObjects:@"hackNY", @"HackDuke", @"HackPrinceton", nil];
+    //self.hackathonsArray[3] = [NSArray arrayWithObjects:@"HackMIT", @"HackTECH", @"LAHacks", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)addHackathons:(NSArray *)hackathons
+{
+    NSLog(@"%@", self.hackathonsArray);
+    for (PFObject *hackathon in hackathons) {
+        [self.hackathonsArray addObject: [hackathon objectForKey:@"name"]];
+    }
+    NSLog(@"%@", self.hackathonsArray);
+    //NSLog(@"%@", [self.hackathonsArray count]);
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,8 +91,8 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    //return 1;
-    return 3;
+    return 1;
+    //return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -87,8 +101,9 @@
     
     //return [[self.hackathonsArray objectAtIndex:section] count];
     NSLog(@"%lu", (unsigned long)section);
-    NSLog(@"%lu", (unsigned long)[[self.hackathonsArray objectAtIndex:section] count]);
-    return [[self.hackathonsArray objectAtIndex:section] count];
+    //NSLog(@"%lu", (unsigned long)[[self.hackathonsArray objectAtIndex:section] count]);
+    //return [[self.hackathonsArray objectAtIndex:section] count];
+    return [self.hackathonsArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,8 +113,8 @@
     // Configure the cell...
 //    cell.textLabel.text = [self.hackathons objectAtIndex:indexPath.row];
     //NSLog(@"%@", [self.hackathonsArray objectAtIndex:0]);
-    cell.textLabel.text = [[self.hackathonsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-    
+    //cell.textLabel.text = [[self.hackathonsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.hackathonsArray objectAtIndex:indexPath.row];
     //cell.textLabel.text = [self.hackathons objectAtIndex:indexPath.row];
     
     //cell.textLabel.text = [self.hackathonsArray[0] objectAtIndex:indexPath.row];
@@ -172,7 +187,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -180,8 +195,23 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"toHackathonDetailView"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //**eventually will be a dictionary instead of a string
+        //NSString *hackathon = [[self.hackathonsArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        NSString *hackathon = [self.hackathonsArray objectAtIndex:indexPath.row];
+        // Get reference to the destination view controller
+        HackathonDetailViewController *vc = [segue destinationViewController];
+        [vc setHackathon:hackathon];
+        
+        
+        // Pass any objects to the view controller here, like...
+        //[vc setMyObjectHere:hackathon];
+    }
 }
 
- */
+
 
 @end

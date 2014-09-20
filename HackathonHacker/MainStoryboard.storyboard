@@ -51,10 +51,10 @@
             </objects>
             <point key="canvasLocation" x="84" y="-30"/>
         </scene>
-        <!--View Controller-->
+        <!--Hackathon Detail View Controller - hackathonDetailViewController-->
         <scene sceneID="DTK-ga-aFf">
             <objects>
-                <viewController id="Rfp-20-EWI" sceneMemberID="viewController">
+                <viewController title="hackathonDetailViewController" id="Rfp-20-EWI" customClass="HackathonDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yzu-0c-ODD"/>
                         <viewControllerLayoutGuide type="bottom" id="Y9P-9g-avD"/>
@@ -64,7 +64,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="AzS-st-t7R"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Hackathon" id="AzS-st-t7R"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="hackathonDetailView" destination="UyP-c2-8hT" id="JPc-m3-MCo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VBe-yD-rPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
