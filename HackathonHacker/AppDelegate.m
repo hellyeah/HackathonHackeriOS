@@ -7,18 +7,27 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     /*
+    [Parse setApplicationId:@"YlK6Lh7dAfLiY2eYLkMwM57QBTTqKHexMjnxRVt8"
+                  clientKey:@"PXk0i4POrXoIahnwi4a6FAKOGJZtBNDwjoLYgtxf"];*/
+    [Parse setApplicationId:@"YlK6Lh7dAfLiY2eYLkMwM57QBTTqKHexMjnxRVt8"
+                  clientKey:@"PXk0i4POrXoIahnwi4a6FAKOGJZtBNDwjoLYgtxf"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    /*
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
      */
+    // Register for Push Notitications, if running iOS 8
+
     return YES;
 }
 
