@@ -11,7 +11,7 @@
 
 @interface HackathonDetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *hackathonDetailView;
-@property (strong, nonatomic) NSString *hackathon;
+@property (strong, nonatomic) NSMutableDictionary *hackathon;
 
 
 

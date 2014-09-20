@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationItem.title = self.hackathon;
+    self.navigationItem.title = [self.hackathon objectForKey:@"name"];
     //self.hellYeah.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
@@ -50,7 +50,7 @@
     NSLog(@"%@", @"HELL YEAH");
     //save to Parse
     PFObject *gameScore = [PFObject objectWithClassName:@"intent"];
-    gameScore[@"hackathonName"] = self.hackathon;
+    gameScore[@"hackathonName"] = [self.hackathon objectForKey:@"name"];
     gameScore[@"user"] = @"me";
     [gameScore saveInBackground];
 }

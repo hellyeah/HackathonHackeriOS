@@ -73,7 +73,7 @@
 {
     NSLog(@"%@", self.hackathonsArray);
     for (PFObject *hackathon in hackathons) {
-        [self.hackathonsArray addObject: [hackathon objectForKey:@"name"]];
+        [self.hackathonsArray addObject: hackathon];
     }
     NSLog(@"%@", self.hackathonsArray);
     //NSLog(@"%@", [self.hackathonsArray count]);
@@ -114,7 +114,7 @@
 //    cell.textLabel.text = [self.hackathons objectAtIndex:indexPath.row];
     //NSLog(@"%@", [self.hackathonsArray objectAtIndex:0]);
     //cell.textLabel.text = [[self.hackathonsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-    cell.textLabel.text = [self.hackathonsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[self.hackathonsArray objectAtIndex:indexPath.row] objectForKey:@"name"];
     //cell.textLabel.text = [self.hackathons objectAtIndex:indexPath.row];
     
     //cell.textLabel.text = [self.hackathonsArray[0] objectAtIndex:indexPath.row];
@@ -201,7 +201,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         //**eventually will be a dictionary instead of a string
         //NSString *hackathon = [[self.hackathonsArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        NSString *hackathon = [self.hackathonsArray objectAtIndex:indexPath.row];
+        NSMutableDictionary *hackathon = [self.hackathonsArray objectAtIndex:indexPath.row];
         // Get reference to the destination view controller
         HackathonDetailViewController *vc = [segue destinationViewController];
         [vc setHackathon:hackathon];
