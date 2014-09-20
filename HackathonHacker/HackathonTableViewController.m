@@ -27,6 +27,10 @@
 {
     [super viewDidLoad];
     
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"bar";
+    [testObject saveInBackground];
+    
     self.hackathons = @[@"MHacks", @"PennApps", @"HackTheNorth", @"YHacks"];
     
     self.hackathonsArray = [NSMutableArray new];
