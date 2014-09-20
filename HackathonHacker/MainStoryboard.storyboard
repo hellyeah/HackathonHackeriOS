@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KWI-kB-aSr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="w6h-l2-2Oa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Hackathon Table View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="eet-3u-bAd">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="w6h-l2-2Oa" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IFs-BS-yGp">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KWI-kB-aSr" kind="relationship" relationship="rootViewController" id="IrI-iK-J3Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qlh-RL-fnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-479" y="-30"/>
+        </scene>
+        <!--Hackathon Table View Controller - Hackathons-->
         <scene sceneID="Eds-mi-OxC">
             <objects>
                 <tableViewController id="KWI-kB-aSr" customClass="HackathonTableViewController" sceneMemberID="viewController">
@@ -13,13 +28,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="iuO-RL-JVo">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="iuO-RL-JVo">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iuO-RL-JVo" id="dNI-Xg-ntl">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Rfp-20-EWI" kind="push" identifier="toHackathonDetailView" id="VOr-mf-Cec"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -27,10 +45,30 @@
                             <outlet property="delegate" destination="KWI-kB-aSr" id="Y6G-HH-Ao0"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Hackathons" id="1Kx-ca-y9s"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAJ-NP-A7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="84" y="-30"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DTK-ga-aFf">
+            <objects>
+                <viewController id="Rfp-20-EWI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yzu-0c-ODD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y9P-9g-avD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UyP-c2-8hT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AzS-st-t7R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VBe-yD-rPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="588" y="-30"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -13,7 +13,9 @@
 
 @property (nonatomic, strong) NSMutableArray *hackathonsArray;
 
-@property (nonatomic, strong) NSArray *hackathons;
+@property (nonatomic, strong) NSMutableArray *hackathons;
+
+
 
 @property (nonatomic, strong) NSArray *hackathons1;
 @property (nonatomic, strong) NSArray *hackathons2;

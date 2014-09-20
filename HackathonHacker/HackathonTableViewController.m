@@ -31,11 +31,30 @@
     testObject[@"foo"] = @"bar";
     [testObject saveInBackground];
     
-    self.hackathons = @[@"MHacks", @"PennApps", @"HackTheNorth", @"YHacks"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Hackathon"];
+    //**should change to Hackathons at some point
+    //[query whereKey:@"playerName" equalTo:@"Dan Stemkoski"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d hackathons.", objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", [object objectForKey:@"name"]);
+                [self.hackathons addObject: object];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    //self.hackathons = ;
+    NSLog(@"%@", self.hackathons);
     
     self.hackathonsArray = [NSMutableArray new];
     
-    self.hackathonsArray[0] = self.hackathons;
+    self.hackathonsArray[0] = @[@"MHacks", @"PennApps", @"HackTheNorth", @"YHacks"];
     self.hackathonsArray[1] = [NSArray arrayWithObjects:@"hackNY", @"HackGT", @"CalHacks", @"HackTX", @"BoilerMake", nil];
     self.hackathonsArray[2] = [NSArray arrayWithObjects:@"hackNY", @"HackDuke", @"HackPrinceton", nil];
     self.hackathonsArray[3] = [NSArray arrayWithObjects:@"HackMIT", @"HackTECH", @"LAHacks", nil];
