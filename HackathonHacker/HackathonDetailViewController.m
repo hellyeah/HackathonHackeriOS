@@ -7,6 +7,7 @@
 //
 
 #import "HackathonDetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface HackathonDetailViewController ()
@@ -30,6 +31,31 @@
 	// Do any additional setup after loading the view.
     self.navigationItem.title = [self.hackathon objectForKey:@"name"];
     [self addHellYeahButton];
+    
+    //loading webview
+    [self loadWebView];
+    //WebView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width -5, self.view.frame.size.height -5)];
+}
+
+- (void)setColor:(UIColor *)color forState:(UIControlState)state forButton:(UIButton*)button
+{
+    UIView *colorView = [[UIView alloc] initWithFrame:button.frame];
+    colorView.backgroundColor = color;
+    
+    UIGraphicsBeginImageContext(colorView.bounds.size);
+    [colorView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *colorImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [button setBackgroundImage:colorImage forState:state];
+}
+
+- (void)loadWebView
+{
+    NSURL *url = [NSURL URLWithString:[self.hackathon objectForKey:@"website"]];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:urlRequest];
 }
 
 - (void)addHellYeahButton
@@ -41,13 +67,15 @@
                action:@selector(clickedHellYeah:)
      forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"HELL YEAH" forState:UIControlStateNormal];
-    //**I DONT WANT TO BE SETTING THIS STATICALLY (different phone sizes)
+    
+    //I DONT WANT TO BE SETTING THIS STATICALLY (different phone sizes)
     //grabbing screen size and then setting cgrect
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    //CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    button.frame = CGRectMake(80.0, screenHeight-40.0, 160.0, 40.0);
-    //button.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
+    button.frame = CGRectMake(0.0, screenHeight-40.0, screenWidth, 40.0);
+    [self setColor:[UIColor blackColor] forState:(0) forButton:button];
+    
     [self.view addSubview:button];
 }
 
