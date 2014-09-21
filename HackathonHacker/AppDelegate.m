@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+@import UIKit;
 
 @implementation AppDelegate
 
@@ -27,8 +28,38 @@
     [self.window makeKeyAndVisible];
      */
     // Register for Push Notitications, if running iOS 8
+    //if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        /*
+        UIRemoteNotificationType userNotificationTypes = (UIRemoteNotificationTypeAlert |
+                                                        UIRemoteNotificationTypeBadge |
+                                                        UIRemoteNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+         */
+    //} else {
+        // Register for Push Notifications before iOS 8
+        NSLog(@"%@", @"blah");
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    //}
 
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    NSLog(@"%@", @"blah2");
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[ @"global" ];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
