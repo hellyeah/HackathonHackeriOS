@@ -73,7 +73,7 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    button.frame = CGRectMake(0.0, screenHeight-40.0, screenWidth, 40.0);
+    button.frame = CGRectMake(0.0, screenHeight-80.0, screenWidth, 80.0);
     [self setColor:[UIColor blackColor] forState:(0) forButton:button];
     
     [self.view addSubview:button];
@@ -92,5 +92,15 @@
     gameScore[@"hackathonName"] = [self.hackathon objectForKey:@"name"];
     gameScore[@"user"] = @"me";
     [gameScore saveInBackground];
+    
+    // Create our Installation query
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    
+    NSString *confirmation = [ [@"As soon as " stringByAppendingString:[self.hackathon objectForKey:@"name"]] stringByAppendingString:@" registration opens, you'll receive a push notification!"];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:confirmation];
 }
 @end
